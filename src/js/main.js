@@ -12,6 +12,38 @@ $('button').eq(2).click(() => {
     $('.w-500').fadeToggle(800);
 });
 
+$('#trigger').click(() => $('#trigger').createModal({
+    text: {
+        title: 'Modal title',
+        body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est odio tempore, nesciunt consequatur, nisi autem sapiente voluptas ullam dolorum perspiciatis nulla dolore ipsam animi minus dolores mollitia? Nesciunt, quos necessitatibus.'
+    },
+    btns: {
+        count: 3,
+        settings: [
+            [
+                'Close',
+                ['btn-danger', 'mr-10'],
+                true
+            ],
+            [
+                'Save changes',
+                ['btn-success'],
+                false,
+                () => {
+                    alert('Данные сохранены');
+                }
+            ],
+            [
+                'Another btn',
+                ['btn-warning', 'ml-10'],
+                false,
+                () => {
+                    alert('Здорова');
+                }
+            ]
+        ]
+    }
+}));
 // //$('.active').toggleClass('huy1na');
 
 // $('button').on('click', function() {
