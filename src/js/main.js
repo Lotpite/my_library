@@ -1,5 +1,44 @@
 import $ from './lib/lib';
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Old functional
 $('#first').click(() => {
     $('div').eq(1).fadeToggle(800);
 });
@@ -44,6 +83,10 @@ $('#trigger').click(() => $('#trigger').createModal({
         ]
     }
 }));
+
+$().get('https://jsonplaceholder.typicode.com/todos/1')
+    .then(res => console.log(res));
+
 // //$('.active').toggleClass('huy1na');
 
 // $('button').on('click', function() {
@@ -54,3 +97,4 @@ $('#trigger').click(() => $('#trigger').createModal({
 // //console.log($('.findme').siblings());
 // //$('.findme').fadeIn(1800);
 // //console.log($('button').html("Hello"));
+*/

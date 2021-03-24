@@ -2189,6 +2189,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_tab__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/tab */ "./src/js/lib/components/tab.js");
 /* harmony import */ var _components_accordion__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/accordion */ "./src/js/lib/components/accordion.js");
 /* harmony import */ var _components_carousel__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/carousel */ "./src/js/lib/components/carousel.js");
+/* harmony import */ var _services_requests__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./services/requests */ "./src/js/lib/services/requests.js");
+
 
 
 
@@ -2586,6 +2588,57 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.click = function (handle
 
 /***/ }),
 
+/***/ "./src/js/lib/services/requests.js":
+/*!*****************************************!*\
+  !*** ./src/js/lib/services/requests.js ***!
+  \*****************************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core */ "./src/js/lib/core.js");
+
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.get = async function (url, dataTypeAnswer = 'json') {
+  let res = await fetch(url);
+
+  if (!res.ok) {
+    throw new Error(`Could not fetch ${url}, status: ${res.status}`);
+  }
+
+  switch (dataTypeAnswer) {
+    case 'json':
+      return await res.json();
+
+    case 'text':
+      return await res.text();
+
+    case 'blob':
+      return await res.blob();
+  }
+};
+
+_core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.post = async function (url, data, dataTypeAnswer = 'text') {
+  let res = await fetch(url, {
+    method: 'POST',
+    body: data
+  });
+
+  switch (dataTypeAnswer) {
+    case 'json':
+      return await res.json();
+
+    case 'text':
+      return await res.text();
+
+    case 'blob':
+      return await res.blob();
+  }
+};
+
+/***/ }),
+
 /***/ "./src/js/main.js":
 /*!************************!*\
   !*** ./src/js/main.js ***!
@@ -2597,29 +2650,57 @@ _core__WEBPACK_IMPORTED_MODULE_0__["default"].prototype.click = function (handle
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_lib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/lib */ "./src/js/lib/lib.js");
 
-Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#first').click(() => {
-  Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('div').eq(1).fadeToggle(800);
+/* Old functional
+$('#first').click(() => {
+    $('div').eq(1).fadeToggle(800);
 });
-Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('[data-count="second"]').click(() => {
-  Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('div').eq(2).fadeToggle(800);
+
+$('[data-count="second"]').click(() => {
+    $('div').eq(2).fadeToggle(800);
 });
-Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('button').eq(2).click(() => {
-  Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('.w-500').fadeToggle(800);
+
+$('button').eq(2).click(() => {
+    $('.w-500').fadeToggle(800);
 });
-Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#trigger').click(() => Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#trigger').createModal({
-  text: {
-    title: 'Modal title',
-    body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est odio tempore, nesciunt consequatur, nisi autem sapiente voluptas ullam dolorum perspiciatis nulla dolore ipsam animi minus dolores mollitia? Nesciunt, quos necessitatibus.'
-  },
-  btns: {
-    count: 3,
-    settings: [['Close', ['btn-danger', 'mr-10'], true], ['Save changes', ['btn-success'], false, () => {
-      alert('Данные сохранены');
-    }], ['Another btn', ['btn-warning', 'ml-10'], false, () => {
-      alert('Здорова');
-    }]]
-  }
-})); // //$('.active').toggleClass('huy1na');
+
+$('#trigger').click(() => $('#trigger').createModal({
+    text: {
+        title: 'Modal title',
+        body: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est odio tempore, nesciunt consequatur, nisi autem sapiente voluptas ullam dolorum perspiciatis nulla dolore ipsam animi minus dolores mollitia? Nesciunt, quos necessitatibus.'
+    },
+    btns: {
+        count: 3,
+        settings: [
+            [
+                'Close',
+                ['btn-danger', 'mr-10'],
+                true
+            ],
+            [
+                'Save changes',
+                ['btn-success'],
+                false,
+                () => {
+                    alert('Данные сохранены');
+                }
+            ],
+            [
+                'Another btn',
+                ['btn-warning', 'ml-10'],
+                false,
+                () => {
+                    alert('Здорова');
+                }
+            ]
+        ]
+    }
+}));
+
+$().get('https://jsonplaceholder.typicode.com/todos/1')
+    .then(res => console.log(res));
+
+// //$('.active').toggleClass('huy1na');
+
 // $('button').on('click', function() {
 //     $('div').eq(1).toggleClass('active');
 // });
@@ -2628,6 +2709,7 @@ Object(_lib_lib__WEBPACK_IMPORTED_MODULE_0__["default"])('#trigger').click(() =>
 // //console.log($('.findme').siblings());
 // //$('.findme').fadeIn(1800);
 // //console.log($('button').html("Hello"));
+*/
 
 /***/ })
 
